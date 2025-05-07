@@ -26,10 +26,20 @@ const RecipeDetail = () => {
 
   if (!recipe) return <div>Loading...</div>;
 
+  // Function to split the instructions into individual steps
+  const getInstructionSteps = (instructions) => {
+    // If instructions exist, split the string by either newlines or <li> tags
+    if (!instructions) return [];
+    const steps = instructions.split(/(?:\r\n|\r|\n)/); // Split by newlines
+    return steps.filter(step => step.trim() !== ''); // Remove empty steps
+  };
+
+  const instructionSteps = getInstructionSteps(recipe.instructions);
+
   return (
     <div>
       <h1>{recipe.title}</h1>
-      <img src={recipe.image} alt={recipe.title} />
+      <img className="recipe-detail-image" src={recipe.image} alt={recipe.title} />
       
       {/* Display extra recipe details */}
       <h3>Servings</h3>
@@ -74,8 +84,12 @@ const RecipeDetail = () => {
       </ul>
 
       <h3>Instructions</h3>
-      {/* Use dangerouslySetInnerHTML to safely render HTML in instructions */}
-      <div dangerouslySetInnerHTML={{ __html: recipe.instructions }} />
+      {/* Map over the instruction steps and render them as a numbered list */}
+      <ol>
+        {instructionSteps.map((step, index) => (
+          <li key={index}>{step}</li>
+        ))}
+      </ol>
     </div>
   );
 };

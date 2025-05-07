@@ -6,17 +6,47 @@ body, input, button, select {
 }
 
 body{
-  margin: auto;
+  margin: 2rem;
+  background:#F2F2F2;
 }
 
 select, input, button{
   height: 40px;
-  margin: 2rem;
 }
 
 li, ol, ul{
   list-style-type: none;
+  padding: 0;
 }
+
+input{
+  box-sizing: border-box;
+  border-radius: 15px;
+  border: none;
+  padding: 0.10rem 0.5rem;
+  width: 100%;
+}
+
+input:focus {
+  /* box-sizing: border-box; */
+  border: 2px solid #2DC268; 
+  outline: none; 
+}
+
+button{
+  border-radius: 15px;
+  border: none;
+  background: #2DC268;
+  color: white;
+  padding: 0.10rem 0.5rem;
+}
+
+button:hover{
+  background: #28a359;
+
+}
+
+/* Home Page */
 
 .main-content{
   display: flex;
@@ -25,6 +55,18 @@ li, ol, ul{
   justify-content: space-evenly;
 }
 
+.row{
+  text-align: center
+}
+
+.pagination-btns{
+  margin:2rem;
+}
+
+.search-btn{
+  width: 100%;
+  margin-top: 0.5rem;
+}
 
 /* Container for each recipe card */
 .recipe-card {
@@ -32,16 +74,16 @@ li, ol, ul{
   display: inline-block;
   width: 100%;
   margin-bottom: 20px;
-  overflow: hidden; /* Prevent content from spilling out of the card */
-  border-radius: 8px; /* Rounded corners for the image */
+  overflow: hidden;
+  border-radius: 15px; 
   transition: all 0.3s ease-in-out;
 }
 
-/* Style for the image */
 .recipe-card img {
-  width: 100%;
-  height: auto;
-  transition: box-shadow 0.3s ease-in-out; /* Add smooth transition for shadow */
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+  border-radius: 15px; 
 }
 
 /* Title and Button positioning */
@@ -69,4 +111,6 @@ li, ol, ul{
   bottom: 0;
   z-index: 1;
   width: 100%;
+  margin-bottom: 0.5rem;
 }
+

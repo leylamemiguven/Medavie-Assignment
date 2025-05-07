@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Container, Row, Col, Button, Form, Card } from 'react-bootstrap';
 import API_KEY from '../config';
 
+
 const Home = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [recipes, setRecipes] = useState([]);
@@ -11,7 +12,7 @@ const Home = () => {
   const [cuisine, setCuisine] = useState(''); // Track selected cuisine filter
 
   const cuisines = [
-    'African', 'Asian', 'American', 'British', 'Cajun', 'Caribbean', 'Chinese', 
+    'All','African', 'Asian', 'American', 'British', 'Cajun', 'Caribbean', 'Chinese', 
     'Eastern European', 'European', 'French', 'German', 'Greek', 'Indian', 
     'Irish', 'Italian', 'Japanese', 'Jewish', 'Korean', 'Latin American', 
     'Mediterranean', 'Mexican', 'Middle Eastern', 'Nordic', 'Southern', 
@@ -73,9 +74,10 @@ const Home = () => {
   }, [page, cuisine]); // Run the search whenever page, or cuisine changes
 
   return (
-    <Container>
-      Search Recipe
+    <Container className="main-content">
+      <h1>Search Recipe </h1>
       <Row>
+        <p>Search for a recipe by typing a food type (e.g.,pasta, sushi, hamburger)</p>
         <Col>
           <input
             type="text"
@@ -105,27 +107,34 @@ const Home = () => {
         {recipes.length === 0 ? (
           <p>No results found</p>
         ) : (
-          <ul>
-            {recipes.map((recipe) => (
-              <li key={recipe.id}>
-                <h3>{recipe.title}</h3>
+          recipes.map((recipe) => (
+            <Col key={recipe.id} sm={12} md={6} lg={4} className="mb-4">
+              <div className="recipe-card">
                 <img src={recipe.image} alt={recipe.title} />
-                <Button onClick={() => window.location.href = `/recipe/${recipe.id}`}>View Recipe</Button>
-              </li>
-            ))}
-          </ul>
+                <div className="recipe-card-title">
+                  <h3>{recipe.title}</h3>
+                </div>
+                <div className="recipe-card-button">
+                  <Button variant="primary" onClick={() => window.location.href = `/recipe/${recipe.id}`}>
+                    View Recipe
+                  </Button>
+                </div>
+              </div>
+            </Col>
+          ))
         )}
       </Row>
+
 
       {/* Pagination Controls */}
       <Row>
         <Col>
           <Button onClick={handlePrevious} disabled={page === 1}>
-            Previous
+            &lt;
           </Button>
           <span>Page {page} of {totalPages}</span>
           <Button onClick={handleNext} disabled={page === totalPages}>
-            Next
+            &gt;
           </Button>
         </Col>
       </Row>

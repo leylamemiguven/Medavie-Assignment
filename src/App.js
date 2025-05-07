@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import RecipeDetail from './components/RecipeDetail';
+import './assets/styles/styles.css';
 
 const App = () => {
   return (

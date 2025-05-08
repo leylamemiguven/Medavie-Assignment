@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom'; // Use useNavigate instead of useHistory
 import axios from 'axios';
 import API_KEY from '../config'; 
 
 const RecipeDetail = () => {
   const { id } = useParams(); // Get the dynamic 'id' from the URL
   const [recipe, setRecipe] = useState(null);
+  const navigate = useNavigate(); // Initialize useNavigate hook
 
   useEffect(() => {
     const fetchRecipeDetails = async () => {
@@ -26,18 +27,13 @@ const RecipeDetail = () => {
 
   if (!recipe) return <div>Loading...</div>;
 
-  // Function to split the instructions into individual steps
-  const getInstructionSteps = (instructions) => {
-    // If instructions exist, split the string by either newlines or <li> tags
-    if (!instructions) return [];
-    const steps = instructions.split(/(?:\r\n|\r|\n)/); // Split by newlines
-    return steps.filter(step => step.trim() !== ''); // Remove empty steps
-  };
-
-  const instructionSteps = getInstructionSteps(recipe.instructions);
-
   return (
     <div>
+      {/* Back Button */}
+      <button onClick={() => navigate('/')} className="back-button">
+        ← Back to Home
+      </button>
+
       <h1>{recipe.title}</h1>
       <img className="recipe-detail-image" src={recipe.image} alt={recipe.title} />
       
@@ -84,12 +80,9 @@ const RecipeDetail = () => {
       </ul>
 
       <h3>Instructions</h3>
-      {/* Map over the instruction steps and render them as a numbered list */}
-      <ol>
-        {instructionSteps.map((step, index) => (
-          <li key={index}>{step}</li>
-        ))}
-      </ol>
+      <div
+        dangerouslySetInnerHTML={{ __html: recipe.instructions }}
+      />
     </div>
   );
 };

@@ -100,9 +100,9 @@ const Home = () => {
               <div className="recipe-card-content">
                 <div className="recipe-card-title">
                   <h3>{recipe.title}</h3>
-                  <FaArrowRight 
+                  <FaArrowRight
                     className="view-recipe-arrow"
-                    onClick={() => window.location.href = `/recipe/${recipe.id}`} 
+                    onClick={() => window.location.href = `/recipe/${recipe.id}`}
                   />
                 </div>
               </div>

@@ -14,6 +14,10 @@ const Home = () => {
   const [intolerances, setIntolerances] = useState('');
   const [hasSearched, setHasSearched] = useState(false); // Track if a search has been made
 
+  const mainContentStyle = {
+    height: hasSearched && recipes.length > 0 ? 'auto' : '100vh', // 100vh when no search results, auto when there are results
+  };
+
   // Function to handle search
   const handleSearch = async () => {
     if (!searchTerm) {
@@ -72,7 +76,7 @@ const Home = () => {
   }, [page, cuisine, diet, intolerances, hasSearched]);
 
   return (
-    <Container className="main-content">
+    <Container className="main-content" style={mainContentStyle}>
       <h1>Search Recipe</h1>
       <Row>
         <p>Search for a recipe by typing a food type (e.g., pasta, sushi, hamburger)</p>

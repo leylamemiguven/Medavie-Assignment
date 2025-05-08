@@ -70,7 +70,7 @@ button:hover {
   margin-bottom: 20px;
   overflow: hidden;
   border-radius: 15px;
-  height: 300px;  /* Set a fixed height to maintain consistent size */
+  height: 400px;  /* Set a fixed height to maintain consistent size */
   background-color: #f0f0f0;  /* Default background when no image */
   background-image: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)); /* Gradient from bottom */
 }
@@ -128,6 +128,7 @@ button:hover {
 
 .recipe-card:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 }
 
 /* Recipe Detail */

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import API_KEY from '../config';
 import Filter from '../components/Filter';
-import { FaArrowRight } from 'react-icons/fa'
+import { FaArrowRight } from 'react-icons/fa';
 
 const Home = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -69,7 +68,7 @@ const Home = () => {
     if (hasSearched) {
       handleSearch(); // Run the search whenever page, cuisine, diet, or intolerances changes after a search
     }
-  }, [page, cuisine, diet, intolerances, hasSearched]);
+  }, [page, cuisine, diet, intolerances, hasSearched, handleSearch]); // Add handleSearch here
 
   return (
     <Container className="main-content">
@@ -94,7 +93,7 @@ const Home = () => {
       <Row>
         {hasSearched && recipes.length === 0 && <p>No results found</p>}
         {recipes.map((recipe) => (
-          <Col key={recipe.id} sm={12} md={6} lg={4} className="mb-4">
+          <Col onClick={() => window.location.href = `/recipe/${recipe.id}`} key={recipe.id} sm={12} md={6} lg={4} className="mb-4">
             <div className="recipe-card">
               <img src={recipe.image} alt={recipe.title} />
               <div className="recipe-card-content">
@@ -102,7 +101,6 @@ const Home = () => {
                   <h3>{recipe.title}</h3>
                   <FaArrowRight
                     className="view-recipe-arrow"
-                    onClick={() => window.location.href = `/recipe/${recipe.id}`}
                   />
                 </div>
               </div>

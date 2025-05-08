@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import Filter from '../components/Filter';
-import { FaArrowRight } from 'react-icons/fa';
+import { FaArrowRight } from 'react-icons/fa'
 
 const Home = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -68,7 +68,7 @@ const Home = () => {
     if (hasSearched) {
       handleSearch(); // Run the search whenever page, cuisine, diet, or intolerances changes after a search
     }
-  }, [page, cuisine, diet, intolerances, hasSearched, handleSearch]); // Add handleSearch here
+  }, [page, cuisine, diet, intolerances, hasSearched]);
 
   return (
     <Container className="main-content">

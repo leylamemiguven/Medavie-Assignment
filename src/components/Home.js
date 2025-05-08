@@ -68,6 +68,7 @@ const Home = () => {
     if (hasSearched) {
       handleSearch(); // Run the search whenever page, cuisine, diet, or intolerances changes after a search
     }
+    // eslint-disable-next-line
   }, [page, cuisine, diet, intolerances, hasSearched]);
 
   return (
